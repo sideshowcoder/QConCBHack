@@ -72,16 +72,16 @@
 - (void)setupReplication
 {
   NSURLCredential *cred = [NSURLCredential credentialWithUser:@"philipp.fehre@gmail.com"
-                                                     password:@"734d2451927cfda3996812935875c3d9"
+                                                     password:@"503e5e091a5c0b50746f52523579ae7b"
                                                   persistence:NSURLCredentialPersistencePermanent];
-  NSURLProtectionSpace *space = [[NSURLProtectionSpace alloc] initWithHost:@"localhost"
+  NSURLProtectionSpace *space = [[NSURLProtectionSpace alloc] initWithHost:@"ec2-54-186-17-144.us-west-2.compute.amazonaws.com"
                                                                       port:4984
                                                                   protocol:@"http"
                                                                      realm:@"Couchbase Sync Gateway"
                                                       authenticationMethod:NSURLAuthenticationMethodDefault];
   [[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential: cred forProtectionSpace: space];
 
-  NSURL *url = [NSURL URLWithString:@"http://localhost:4984/sync_gateway"];
+  NSURL *url = [NSURL URLWithString:@"http://ec2-54-186-17-144.us-west-2.compute.amazonaws.com:4984/sync_gateway"];
   CBLReplication *repl = [self.database replicationToURL:url];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -109,7 +109,7 @@
 {
   NSError *error;
 
-  CBLDocument *doc = [self.database documentWithID:@"734d2451927cfda3996812935875c3d9"];
+  CBLDocument *doc = [self.database documentWithID:@"503e5e091a5c0b50746f52523579ae7b"];
   NSDictionary *properties = @{ @"type": @"rating",
                                 @"owner": @"philipp.fehre@gmail.com",
                                 @"Architecture": @{
